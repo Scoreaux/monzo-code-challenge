@@ -1,16 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import dotenv from 'dotenv';
 
-dotenv.config();
-
-import App from 'components/App';
+import App from 'src/containers/App';
 
 render(<App />, document.getElementById('app'));
 
 if (module.hot) {
-  module.hot.accept('components/App', () => {
-    const NextApp = require('components/App').default; // eslint-disable-line
+  module.hot.accept('src/containers/App', () => {
+    const NextApp = require('src/containers/App').default; // eslint-disable-line
     render(<NextApp />, document.getElementById('app'));
   });
 }
