@@ -1,0 +1,77 @@
+{
+  "name": "monzo-code-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/main.js",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "dev": "webpack-dev-server --mode development --config ./webpack.config.js",
+    "dev:build": "npm run clean && webpack --mode development --config ./webpack.config.js",
+    "prod": "npm run test && npm run clean && webpack --mode production --config ./webpack.config.js",
+    "prod:force": "npm run clean && webpack --mode production --config ./webpack.config.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "Dylan Marshall",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-jest": "^23.0.1",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.8.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.1.0",
+    "postcss-atrule-bem": "^3.1.1",
+    "postcss-extend": "^1.0.5",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.5",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-simple-vars": "^4.1.0",
+    "resolve-url-loader": "^2.3.0",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.9.1",
+    "webpack-bundle-analyzer": "^2.13.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/setupTests.js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "moduleNameMapper": {
+      "\\.(gif|png|jpe?g|svg)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(json|geojson|)$": "<rootDir>/__mocks__/jsonMock.js",
+      "^.+\\.(css|scss)$": "identity-obj-proxy",
+      "^components(.*)$": "<rootDir>/src/components$1"
+    },
+    "transform": {
+      "^.+\\.(js|jsx)$": "babel-jest"
+    }
+  }
+}
