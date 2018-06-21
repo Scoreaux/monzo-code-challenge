@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "repository": {
     "type": "git",
-    "url": "github.com/Scoreaux/monzo-code-challenge.git",
+    "url": "github.com/Scoreaux/monzo-code-challenge.git"
   },
   "scripts": {
     "clean": "rm -rf ./dist",
@@ -30,6 +30,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.11",
+    "dotenv-webpack": "^1.5.7",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
@@ -56,10 +57,15 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^6.0.0",
     "react": "^16.4.0",
-    "react-dom": "^16.4.0"
+    "react-dom": "^16.4.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1"
   },
   "jest": {
+    "verbose": true,
     "setupFiles": [
       "<rootDir>/setupTests.js"
     ],
@@ -72,7 +78,7 @@
       "\\.(gif|png|jpe?g|svg)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(json|geojson|)$": "<rootDir>/__mocks__/jsonMock.js",
       "^.+\\.(css|scss)$": "identity-obj-proxy",
-      "^components(.*)$": "<rootDir>/src/components$1"
+      "^src(.*)$": "<rootDir>/src$1"
     },
     "transform": {
       "^.+\\.(js|jsx)$": "babel-jest"

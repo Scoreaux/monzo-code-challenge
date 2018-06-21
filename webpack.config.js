@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
@@ -16,6 +17,9 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js',
+    },
+    node: {
+      fs: 'empty'
     },
     module: {
       rules: [
@@ -61,7 +65,7 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: ['.js', '.jsx', '.json'],
       alias: {
-        components: path.resolve(__dirname, 'src/components'),
+        src: path.resolve(__dirname, 'src'),
       },
     },
     plugins: [
@@ -69,6 +73,7 @@ module.exports = (env, argv) => {
         template: './index.html',
         chunks: 'app',
       }),
+      new Dotenv(),
     ],
   };
 

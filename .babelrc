@@ -2,7 +2,7 @@
   "presets": [
     ["env", {
       "targets": {
-        "node": "8.2",
+        "node": "8.1.2",
         "chrome": 59
       }
     }],
