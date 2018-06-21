@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/main.js",
+  "repository": {
+    "type": "git",
+    "url": "github.com/Scoreaux/monzo-code-challenge.git",
+  },
   "scripts": {
     "clean": "rm -rf ./dist",
     "dev": "webpack-dev-server --mode development --config ./webpack.config.js",
