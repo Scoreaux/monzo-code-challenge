@@ -16,7 +16,7 @@ export async function signIn({ username, password, expiry } = {}) {
       return { error: response.data.error };
     }
     // Return error
-    return { error };
+    return { error: 'An unknown error occurred, please try again later' };
   }
 }
 
