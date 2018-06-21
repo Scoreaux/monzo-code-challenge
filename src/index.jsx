@@ -1,5 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 import App from 'components/App';
 
