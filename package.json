@@ -5,7 +5,7 @@
   "main": "dist/main.js",
   "repository": {
     "type": "git",
-    "url": "github.com/Scoreaux/monzo-code-challenge.git",
+    "url": "github.com/Scoreaux/monzo-code-challenge.git"
   },
   "scripts": {
     "clean": "rm -rf ./dist",
