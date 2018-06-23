@@ -3,8 +3,9 @@ import { HashRouter } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 
 import { signIn, validateToken } from 'src/api/auth';
-
 import Authenticate from 'src/components/Authenticate';
+
+import styles from './App.scss';
 
 class App extends Component {
   state = {
@@ -86,19 +87,21 @@ class App extends Component {
     const { auth } = this.state;
 
     return (
-      <HashRouter>
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={() => (
-              <Authenticate auth={auth} signIn={this.signIn} />
-            )}
-          />
-          <Route exact path="/apps" render={() => (<div>Apps</div>)} />
-          <Route path="/apps/:id" render={props => (<div>App ID {props.match.params.id}</div>)} />
-        </Switch>
-      </HashRouter>
+      <div className={styles.container}>
+        <HashRouter>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Authenticate auth={auth} signIn={this.signIn} />
+              )}
+            />
+            <Route exact path="/apps" render={() => (<div>Apps</div>)} />
+            <Route path="/apps/:id" render={props => (<div>App ID {props.match.params.id}</div>)} />
+          </Switch>
+        </HashRouter>
+      </div>
     );
   }
 }

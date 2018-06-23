@@ -1,0 +1,58 @@
+@global-import "basscss/css/basscss.css";
+
+:global {
+  html {
+    font-family: system-ui, sans-serif;
+    font-size: 12px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .textInput {
+    border: 2px solid #CCC;
+    border-radius: 4px;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    width: 100%;
+
+    &:focus {
+      border-color: black;
+    }
+  }
+
+  .button, .btn {
+    border: 2px solid black;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    font-weight: bold;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    margin-left: 0;
+    margin-right: 0;
+
+    &:hover:not(:disabled) {
+      border-color: #444;
+    }
+
+    &:active:not(:disabled) {
+      filter: brightness(0.9);
+    }
+
+    &:disabled {
+      border-color: #444;
+      background-color: #CCC;
+      color: #444;
+      cursor: not-allowed;
+    }
+  }
+}

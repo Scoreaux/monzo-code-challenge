@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import styles from './Authenticate.scss';
+
 class Authenticate extends Component {
   state = {
     username: '',
@@ -21,16 +23,36 @@ class Authenticate extends Component {
     const { username, password } = this.state;
 
     return (
-      <div>
+      <div className={styles.container}>
+        <h2>Sign In</h2>
         {auth.message &&
-          <p>{auth.message}</p>
+          <div className={`${styles.message} mb1`}>
+            {auth.message}
+          </div>
         }
-        <input type="text" name="username" value={username} onChange={this.onChange} />
-        <input type="password" name="password" value={password} onChange={this.onChange} />
-        <button onClick={this.onSubmit} disabled={auth.loading}>Sign In</button>
-        {auth.accessToken &&
-          <p>{auth.accessToken}</p>
-        }
+        <form onSubmit={(e) => { e.preventDefault(); }}>
+          <input
+            className="textInput mb1"
+            type="text"
+            name="username"
+            value={username}
+            onChange={this.onChange}
+          />
+          <input
+            className="textInput mb1"
+            type="password"
+            name="password"
+            value={password}
+            onChange={this.onChange}
+          />
+          <input
+            type="submit"
+            className="button"
+            onClick={this.onSubmit}
+            disabled={auth.loading}
+            value={auth.loading ? 'Signing in...' : 'Sign In'}
+          />
+        </form>
       </div>
     );
   }

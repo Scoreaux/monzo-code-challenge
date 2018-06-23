@@ -5,6 +5,7 @@ module.exports = {
       shortcuts: true,
     }),
     require('postcss-import'),
+    require('postcss-global-import'),
     require('postcss-nested'),
     require('postcss-mixins'),
     require('postcss-extend'),

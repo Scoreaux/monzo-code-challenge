@@ -3,6 +3,9 @@ import { render } from 'react-dom';
 
 import App from 'src/containers/App';
 
+import 'basscss/css/basscss.css';
+import './index.scss';
+
 render(<App />, document.getElementById('app'));
 
 if (module.hot) {
