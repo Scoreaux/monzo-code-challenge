@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
-export default ({ children, isAuthenticated, loginPath, render, ...rest }) => {
+export default ({ isAuthenticated, loginPath, render, ...rest }) => {
+  console.log(isAuthenticated);
   if (isAuthenticated) {
-    console.log('Authenticated');
     return render(rest);
   }
   return (

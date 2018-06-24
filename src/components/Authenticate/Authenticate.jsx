@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import styles from './Authenticate.scss';
 
 class Authenticate extends Component {
+  static defaultProps = {
+    auth: {},
+    signIn: () => {},
+  }
+
   state = {
     username: '',
     password: '',
@@ -30,7 +35,12 @@ class Authenticate extends Component {
             {auth.message}
           </div>
         }
-        <form onSubmit={(e) => { e.preventDefault(); }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            this.onSubmit();
+          }}
+        >
           <input
             className="textInput mb1"
             type="text"
@@ -48,7 +58,6 @@ class Authenticate extends Component {
           <input
             type="submit"
             className="button"
-            onClick={this.onSubmit}
             disabled={auth.loading}
             value={auth.loading ? 'Signing in...' : 'Sign In'}
           />

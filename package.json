@@ -42,6 +42,7 @@
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.1.0",
+    "jest-localstorage-mock": "^2.2.0",
     "postcss-atrule-bem": "^3.1.1",
     "postcss-extend": "^1.0.5",
     "postcss-global-import": "^1.0.6",
@@ -69,7 +70,8 @@
   "jest": {
     "verbose": true,
     "setupFiles": [
-      "<rootDir>/setupTests.js"
+      "<rootDir>/setupTests.js",
+      "jest-localstorage-mock"
     ],
     "moduleFileExtensions": [
       "js",
