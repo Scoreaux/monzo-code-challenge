@@ -10,7 +10,7 @@ test('Component mounts', () => {
 
 test('Component triggers props.getApps() on mount', () => {
   const getAppsMock = jest.fn();
-  const component = shallow(<AppList getApps={getAppsMock} />);
+  shallow(<AppList getApps={getAppsMock} />);
 
   expect(getAppsMock.mock.calls.length).toBe(1);
 });
