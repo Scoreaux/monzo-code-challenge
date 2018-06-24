@@ -3,7 +3,7 @@ import { HashRouter, Redirect } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 
 import { signIn, validateToken } from 'src/api/auth';
-import { getApps } from 'src/api/apps';
+import { getApps, getUsers } from 'src/api/apps';
 import Authenticate from 'src/components/Authenticate';
 import PrivateRoute from 'src/containers/PrivateRoute';
 import AppList from 'src/components/AppList';
@@ -22,7 +22,13 @@ class App extends Component {
       list: [],
       loading: false,
       message: null,
-    }
+    },
+    users: {
+      list: [],
+      id: null,
+      loading: false,
+      message: null,
+    },
   }
 
   async componentDidMount() {
@@ -137,8 +143,56 @@ class App extends Component {
     }
   }
 
+  getUsers = async (id, page = 0) => {
+    // Set loading status to true
+    this.setState(state => ({
+      ...state,
+      users: {
+        list: [],
+        id,
+        loading: true,
+      }
+    }));
+    // Request apps list from server
+    const response = await getUsers(
+      this.state.auth.accessToken,
+      { id, offset: page * 25 },
+    );
+    if (response.users) {
+      // Update apps list from response
+      this.setState({
+        users: {
+          id,
+          list: response.users,
+          loading: false,
+        },
+      });
+    } else if (response.status === 401) {
+      // Token has expired or is invalid, clear app list and sign out of app
+      this.setState({
+        users: {
+          id,
+          list: [],
+          loading: false,
+        },
+      }, () => {
+        this.signOut();
+      });
+    } else {
+      // An error occurred, display error messsage
+      this.setState({
+        users: {
+          id,
+          list: [],
+          loading: false,
+          message: response.error,
+        },
+      });
+    }
+  }
+
   render() {
-    const { auth, apps } = this.state;
+    const { auth, apps, users } = this.state;
 
     return (
       <div className={styles.container}>
@@ -167,7 +221,13 @@ class App extends Component {
               exact
               path="/apps/:id"
               render={routeProps => (
-                <AppDetail apps={apps} getApps={this.getApps} {...routeProps} />
+                <AppDetail
+                  apps={apps}
+                  users={users}
+                  getApps={this.getApps}
+                  getUsers={this.getUsers}
+                  {...routeProps}
+                />
               )}
               isAuthenticated={auth.accessToken}
               loginPath="/"

@@ -15,28 +15,47 @@ class AppDetail extends Component {
 
   state = {
     app: null,
+    id: null,
   }
 
   componentDidMount() {
     this.props.getApps();
   }
 
-  static getDerivedStateFromProps(props) {
+  static getDerivedStateFromProps(props, prevState) {
     const { id } = props.computedMatch.params;
+    const app = props.apps.list.find(item => item.id === id);
+
+    // If app ID changes, get first page of users
+    if (app && ((prevState.app && prevState.app.id !== app.id) || !prevState.app)) {
+      props.getUsers(id);
+    }
+
     return {
-      app: props.apps.list.find(app => app.id === id),
+      app,
+      id,
     };
   }
 
+  renderUserListItems = () => {
+    const { users } = this.props;
+    const { id } = this.state;
+    if (users.id === id);
+    return users.list.map(item => (
+      <div>{JSON.stringify(item)}</div>
+    ));
+  }
+
   render() {
-    const { computedMatch, apps } = this.props;
-    const { app } = this.state;
+    const { apps } = this.props;
+    const { app, id } = this.state;
 
     if (app) {
       return (
         <div>
           <h2>{app.name}</h2>
           <p>{app.created}</p>
+          {this.renderUserListItems()}
         </div>
       );
     } else if (apps.loading) {
@@ -46,7 +65,7 @@ class AppDetail extends Component {
     }
     return (
       <div className="message error">
-        An app with id {computedMatch.params.id} could not be found.
+        An app with id {id} could not be found.
       </div>
     );
   }
