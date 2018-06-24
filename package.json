@@ -70,7 +70,7 @@
   "jest": {
     "verbose": true,
     "setupFiles": [
-      "<rootDir>/setupTests.js",
+      "<rootDir>/setupTests.js"
     ],
     "moduleFileExtensions": [
       "js",
