@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 
 import App from 'src/containers/App';
 
+import 'src/assets/global.scss';
+
 render(<App />, document.getElementById('app'));
 
 if (module.hot) {
