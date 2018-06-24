@@ -7,6 +7,7 @@ import { getApps } from 'src/api/apps';
 import Authenticate from 'src/components/Authenticate';
 import PrivateRoute from 'src/containers/PrivateRoute';
 import AppList from 'src/components/AppList';
+import AppDetail from 'src/components/AppDetail';
 
 import styles from './App.scss';
 
@@ -156,14 +157,18 @@ class App extends Component {
             <PrivateRoute
               exact
               path="/apps"
-              render={() => (<AppList apps={apps} getApps={this.getApps} />)}
+              render={routeProps => (
+                <AppList apps={apps} getApps={this.getApps} {...routeProps} />
+              )}
               isAuthenticated={auth.accessToken}
               loginPath="/"
             />
             <PrivateRoute
               exact
               path="/apps/:id"
-              render={props => (<div>App ID {props.match.params.id}</div>)}
+              render={routeProps => (
+                <AppDetail apps={apps} getApps={this.getApps} {...routeProps} />
+              )}
               isAuthenticated={auth.accessToken}
               loginPath="/"
             />
