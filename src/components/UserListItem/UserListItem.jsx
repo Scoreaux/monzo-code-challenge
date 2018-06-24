@@ -11,7 +11,7 @@ const UserListItem = ({ user = {} }) => (
       {user.name}
     </div>
     <div className={styles.created}>
-      {user.email.toLowerCase()}
+      {user.email ? user.email.toLowerCase() : ''}
     </div>
   </div>
 );

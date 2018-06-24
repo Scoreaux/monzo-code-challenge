@@ -9,6 +9,7 @@ import styles from './AppDetail.scss';
 class AppDetail extends Component {
   static defaultProps = {
     getApps: () => {},
+    getUsers: () => {},
     apps: {
       list: [],
       loading: false,
