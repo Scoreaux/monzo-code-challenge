@@ -63,7 +63,7 @@ class App extends Component {
     }));
 
     // Request sign in response from server
-    const response = await signIn({ ...args, expiry: '15s' });
+    const response = await signIn({ ...args });
 
     if (response.accessToken) {
       // Save access token to localStorage for persistant sessions

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
 import UserListItem from 'src/components/UserListItem';
+
+import styles from './AppDetail.scss';
 
 class AppDetail extends Component {
   static defaultProps = {
@@ -93,9 +96,20 @@ class AppDetail extends Component {
     if (app) {
       return (
         <div>
-          <Link to="/apps" className="mb2">Back to apps list</Link>
-          <h1>{app.name}</h1>
-          <p>{app.created}</p>
+          <div className="mb2">
+            <Link to="/apps">Back to apps</Link>
+          </div>
+
+          <div className={`${styles.header} mb2`}>
+            <div className={`${styles.icon} mr2`}>
+              <img src={app.logo} alt={app.name} />
+            </div>
+            <div>
+              <h1 style={{ margin: 0 }}>{app.name}</h1>
+              <div>Created {moment(app.created).fromNow()}</div>
+            </div>
+          </div>
+
           {this.renderUserListItems()}
           {this.renderUserListPageButtons()}
         </div>
