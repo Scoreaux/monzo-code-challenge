@@ -22,10 +22,6 @@ export async function getApps(accessToken) {
   }
 }
 
-export async function updateApp() {
-  return false;
-}
-
 export async function getUsers(accessToken, { id, offset = 0, limit = 25 } = {}) {
   try {
     const response = await axios.get(`${process.env.BASE_URL}/apps/${id}/users`, {

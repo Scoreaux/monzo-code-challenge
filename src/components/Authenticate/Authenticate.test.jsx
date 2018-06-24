@@ -46,3 +46,17 @@ test('Calling props.signIn includes password in args', () => {
 
   expect(signInMock.mock.calls[0][0].username).toBe('test');
 });
+
+test('Changing input value updates state', () => {
+  const component = shallow(<Authenticate />);
+  const form = component.find('form');
+
+  form.find('input').at(0).simulate('change', {
+    target: {
+      name: 'email',
+      value: 'testEmail',
+    }
+  });
+
+  expect(component.state().email).toBe('testEmail');
+});
