@@ -28,7 +28,7 @@ class AppList extends Component {
     const { apps } = this.props;
     return (
       <div>
-        <h2>Apps</h2>
+        <h1>Apps</h1>
         {apps.message &&
           <div className="message error mb1">
             {apps.message}

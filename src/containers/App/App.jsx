@@ -63,7 +63,7 @@ class App extends Component {
     }));
 
     // Request sign in response from server
-    const response = await signIn({ ...args });
+    const response = await signIn({ ...args, expiry: '15s' });
 
     if (response.accessToken) {
       // Save access token to localStorage for persistant sessions
@@ -130,7 +130,7 @@ class App extends Component {
           loading: false,
         },
       }, () => {
-        this.signOut();
+        this.signOut(response.error);
       });
     } else {
       // An error occurred, display error messsage
@@ -149,7 +149,7 @@ class App extends Component {
     this.setState(state => ({
       ...state,
       users: {
-        ...state.users,
+        list: state.users.id === id ? state.users.list : [],
         id,
         page,
         loading: true,
@@ -180,7 +180,7 @@ class App extends Component {
           loading: false,
         },
       }, () => {
-        this.signOut();
+        this.signOut(response.error);
       });
     } else {
       // An error occurred, display error messsage

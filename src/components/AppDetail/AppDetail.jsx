@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import UserListItem from 'src/components/UserListItem';
 
@@ -45,7 +46,11 @@ class AppDetail extends Component {
     if (users.id === id) {
       if (users.loading && users.list.length === 0) {
         return (
-          <div className="center">Loading users list...</div>
+          <div className="center mb2">Loading users list...</div>
+        );
+      } else if (users.message) {
+        return (
+          <div className="messsage error mb2">{users.message}</div>
         );
       }
       return users.list.map(user => (
@@ -88,7 +93,8 @@ class AppDetail extends Component {
     if (app) {
       return (
         <div>
-          <h2>{app.name}</h2>
+          <Link to="/apps" className="mb2">Back to apps list</Link>
+          <h1>{app.name}</h1>
           <p>{app.created}</p>
           {this.renderUserListItems()}
           {this.renderUserListPageButtons()}
