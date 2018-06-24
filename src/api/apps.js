@@ -24,7 +24,7 @@ export async function getApps(accessToken) {
 
 export async function updateApp(accessToken, { id, name, logo } = {}) {
   try {
-    const response = await axios.post(`${process.env.BASE_URL}/apps/${id}`, {
+    const response = await axios.put(`${process.env.BASE_URL}/apps/${id}`, {
       name,
       logo,
     }, {

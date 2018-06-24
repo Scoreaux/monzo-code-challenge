@@ -78,6 +78,25 @@ test('Component renders <UserListItem> for each user', () => {
   expect(component.find('UserListItem').length).toBe(3);
 });
 
+describe('Editing app details', () => {
+  test('Clicking edit button renders edit inputs', () => {
+    const component = shallow(
+      <AppDetail
+        apps={testAppsObject}
+        users={testUsersObject25(1)}
+        computedMatch={{
+          params: {
+            id: testAppsObject.list[0].id,
+          },
+        }}
+      />
+    );
+
+    component.find('button').at(0).simulate('click');
+    expect(component.find('input').length).toBe(2);
+  });
+});
+
 describe('User list pagination', () => {
   test('Clicking previous button loads previous page of users list', () => {
     const getUsersMock = jest.fn();
@@ -94,7 +113,7 @@ describe('User list pagination', () => {
       />
     );
 
-    component.find('button').at(0).simulate('click');
+    component.find('button').at(1).simulate('click');
 
     expect(getUsersMock.mock.calls[1][1]).toBe(0);
   });
@@ -112,7 +131,7 @@ describe('User list pagination', () => {
       />
     );
 
-    expect(component.find('button').at(0).prop('disabled')).toBe(true);
+    expect(component.find('button').at(1).prop('disabled')).toBe(true);
   });
 
   test('Previous button is enabled when page number above 0', () => {
@@ -128,7 +147,7 @@ describe('User list pagination', () => {
       />
     );
 
-    expect(component.find('button').at(0).prop('disabled')).toBe(false);
+    expect(component.find('button').at(1).prop('disabled')).toBe(false);
   });
 
   test('Clicking next button loads next page of users list', () => {
@@ -146,7 +165,7 @@ describe('User list pagination', () => {
       />
     );
 
-    component.find('button').at(1).simulate('click');
+    component.find('button').at(2).simulate('click');
 
     expect(getUsersMock.mock.calls[1][1]).toBe(2);
   });
@@ -164,7 +183,7 @@ describe('User list pagination', () => {
       />
     );
 
-    expect(component.find('button').at(1).prop('disabled')).toBe(true);
+    expect(component.find('button').at(2).prop('disabled')).toBe(true);
   });
 
   test('Next button is enabled when there is 25 users', () => {
@@ -180,6 +199,6 @@ describe('User list pagination', () => {
       />
     );
 
-    expect(component.find('button').at(1).prop('disabled')).toBe(false);
+    expect(component.find('button').at(2).prop('disabled')).toBe(false);
   });
 });

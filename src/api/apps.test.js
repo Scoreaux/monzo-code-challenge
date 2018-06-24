@@ -37,14 +37,14 @@ describe('Get apps list', () => {
 describe('Update app', () => {
   test('Requesting with valid token returns updated app', async () => {
     const appId = 'testAppId';
-    axios.post.mockResolvedValueOnce({ data: { app: { id: appId } } });
+    axios.put.mockResolvedValueOnce({ data: { app: { id: appId } } });
     const response = await updateApp();
 
     expect(response.app.id).toBe(appId);
   });
 
   test('Requesting with invalid or missing token returns unauthorized error', async () => {
-    axios.post.mockRejectedValueOnce({
+    axios.put.mockRejectedValueOnce({
       response: {
         status: 401,
         data: {
@@ -58,7 +58,7 @@ describe('Update app', () => {
   });
 
   test('Unknown response from server returns error object', async () => {
-    axios.post.mockRejectedValueOnce(new Error('Unknown response from server'));
+    axios.put.mockRejectedValueOnce(new Error('Unknown response from server'));
     const response = await updateApp();
 
     expect(response.error);

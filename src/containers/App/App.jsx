@@ -3,7 +3,7 @@ import { HashRouter, Redirect } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 
 import { signIn, validateToken } from 'src/api/auth';
-import { getApps, getUsers } from 'src/api/apps';
+import { getApps, updateApp, getUsers } from 'src/api/apps';
 import Authenticate from 'src/components/Authenticate';
 import PrivateRoute from 'src/containers/PrivateRoute';
 import AppList from 'src/components/AppList';
@@ -144,6 +144,26 @@ class App extends Component {
     }
   }
 
+  updateApp = async (id, data) => {
+    const response = await updateApp(this.state.auth.accessToken, { id, ...data });
+    if (response.app) {
+      // Replace app object in current list with updated ID
+      const appsList = this.state.apps.list.map((item) => {
+        if (item.id === response.app.id) {
+          return response.app;
+        }
+        return item;
+      });
+      // Replace app list in container state
+      this.setState(state => ({
+        apps: {
+          ...state.apps,
+          list: appsList,
+        },
+      }));
+    }
+  }
+
   getUsers = async (id, page = 0) => {
     // Set loading status to true
     this.setState(state => ({
@@ -231,6 +251,7 @@ class App extends Component {
                   users={users}
                   getApps={this.getApps}
                   getUsers={this.getUsers}
+                  updateApp={this.updateApp}
                   {...routeProps}
                 />
               )}

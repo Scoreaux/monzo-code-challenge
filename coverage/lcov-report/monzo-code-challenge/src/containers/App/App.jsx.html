@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">9.76% </span>
+        <span class="strong">8.16% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/41</span>
+        <span class='fraction'>4/49</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.26% </span>
+        <span class="strong">4.35% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/19</span>
+        <span class='fraction'>1/23</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.76% </span>
+        <span class="strong">10% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/17</span>
+        <span class='fraction'>2/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">11.43% </span>
+        <span class="strong">9.52% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/35</span>
+        <span class='fraction'>4/42</span>
       </div>
     </div>
     <p class="quiet">
@@ -293,7 +293,28 @@
 <a name='L245'></a><a href='#L245'>245</a>
 <a name='L246'></a><a href='#L246'>246</a>
 <a name='L247'></a><a href='#L247'>247</a>
-<a name='L248'></a><a href='#L248'>248</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a>
+<a name='L258'></a><a href='#L258'>258</a>
+<a name='L259'></a><a href='#L259'>259</a>
+<a name='L260'></a><a href='#L260'>260</a>
+<a name='L261'></a><a href='#L261'>261</a>
+<a name='L262'></a><a href='#L262'>262</a>
+<a name='L263'></a><a href='#L263'>263</a>
+<a name='L264'></a><a href='#L264'>264</a>
+<a name='L265'></a><a href='#L265'>265</a>
+<a name='L266'></a><a href='#L266'>266</a>
+<a name='L267'></a><a href='#L267'>267</a>
+<a name='L268'></a><a href='#L268'>268</a>
+<a name='L269'></a><a href='#L269'>269</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -440,6 +461,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -522,6 +563,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -545,7 +587,7 @@ import { HashRouter, Redirect } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 &nbsp;
 import { signIn, validateToken } from 'src/api/auth';
-import { getApps, getUsers } from 'src/api/apps';
+import { getApps, updateApp, getUsers } from 'src/api/apps';
 import Authenticate from 'src/components/Authenticate';
 import PrivateRoute from 'src/containers/PrivateRoute';
 import AppList from 'src/components/AppList';
@@ -686,6 +728,26 @@ class App extends Component {
     }
   }
 &nbsp;
+  updateApp = <span class="fstat-no" title="function not covered" >as</span>ync (id, data) =&gt; {
+    const response = <span class="cstat-no" title="statement not covered" >await updateApp(this.state.auth.accessToken, { id, ...data });</span>
+<span class="cstat-no" title="statement not covered" >    if (response.app) {</span>
+      // Replace app object in current list with updated ID
+      const appsList = <span class="cstat-no" title="statement not covered" >this.state.apps.list.map(<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (item.id === response.app.id) {</span>
+<span class="cstat-no" title="statement not covered" >          return response.app;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return item;</span>
+      });
+      // Replace app list in container state
+<span class="cstat-no" title="statement not covered" >      this.setState(<span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+        apps: {
+          ...state.apps,
+          list: appsList,
+        },
+      }));
+    }
+  }
+&nbsp;
   getUsers = <span class="fstat-no" title="function not covered" >as</span>ync (id, page = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span> =&gt; {
     // Set loading status to true
 <span class="cstat-no" title="statement not covered" >    this.setState(<span class="fstat-no" title="function not covered" >st</span>ate =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
@@ -773,6 +835,7 @@ class App extends Component {
                   users={users}
                   getApps={this.getApps}
                   getUsers={this.getUsers}
+                  updateApp={this.updateApp}
                   {...routeProps}
                 /&gt;
               )}
@@ -793,7 +856,7 @@ export default App;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 24 2018 18:00:20 GMT+0100 (BST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Sun Jun 24 2018 18:37:34 GMT+0100 (BST)
 </div>
 </div>
 <script src="../../../../prettify.js"></script>
