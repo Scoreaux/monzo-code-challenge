@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getApps, getUsers } from './apps';
+import { getApps, updateApp, getUsers } from './apps';
 
 jest.mock('axios');
 
@@ -29,6 +29,37 @@ describe('Get apps list', () => {
   test('Unknown response from server returns error object', async () => {
     axios.get.mockRejectedValueOnce(new Error('Unknown response from server'));
     const response = await getApps();
+
+    expect(response.error);
+  });
+});
+
+describe('Update app', () => {
+  test('Requesting with valid token returns updated app', async () => {
+    const appId = 'testAppId';
+    axios.post.mockResolvedValueOnce({ data: { app: { id: appId } } });
+    const response = await updateApp();
+
+    expect(response.app.id).toBe(appId);
+  });
+
+  test('Requesting with invalid or missing token returns unauthorized error', async () => {
+    axios.post.mockRejectedValueOnce({
+      response: {
+        status: 401,
+        data: {
+          error: 'Unauthorized!'
+        }
+      }
+    });
+    const response = await updateApp();
+
+    expect(response.status).toBe(401);
+  });
+
+  test('Unknown response from server returns error object', async () => {
+    axios.post.mockRejectedValueOnce(new Error('Unknown response from server'));
+    const response = await updateApp();
 
     expect(response.error);
   });
