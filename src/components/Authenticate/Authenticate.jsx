@@ -29,6 +29,11 @@ class Authenticate extends Component {
 
     return (
       <div className={styles.container}>
+        <div className={styles.logo}>
+          <span role="img" aria-label="Monzo Code Challenge!">
+            🎉
+          </span>
+        </div>
         <h1>Sign In</h1>
         {auth.message &&
           <div className={`${styles.message} mb1`}>
