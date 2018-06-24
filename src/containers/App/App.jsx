@@ -14,7 +14,7 @@ import styles from './App.scss';
 class App extends Component {
   state = {
     auth: {
-      accessToken: localStorage.getItem('accessToken'),
+      accessToken: null,
       loading: false,
       message: null,
     },
@@ -39,7 +39,6 @@ class App extends Component {
     if (auth.accessToken) {
       const isValid = await validateToken(auth.accessToken);
       if (!isValid) {
-        localStorage.removeItem('accessToken');
         this.setState(state => ({
           ...state,
           auth: {
@@ -66,8 +65,6 @@ class App extends Component {
     const response = await signIn({ ...args });
 
     if (response.accessToken) {
-      // Save access token to localStorage for persistant sessions
-      localStorage.setItem('accessToken', response.accessToken);
       // Save access token to container state
       this.setState(state => ({
         ...state,
@@ -90,8 +87,6 @@ class App extends Component {
   }
 
   signOut = (message) => {
-    // Remove access taken from localStorage
-    localStorage.removeItem('accessToken');
     // Remove access token from container state
     this.setState(state => ({
       ...state,

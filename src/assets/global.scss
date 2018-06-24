@@ -46,6 +46,7 @@
     background-color: white;
     color: black;
     cursor: pointer;
+    margin-left: 0;
 
     &:hover:not(:disabled) {
       border-color: #444;
