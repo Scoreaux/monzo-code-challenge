@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-const AppListItem = props => (
-  <div>{props.app.id}, {props.app.name}</div>
-);
+import AppListItem from 'src/components/AppListItem';
 
 class AppList extends Component {
   static defaultProps = {

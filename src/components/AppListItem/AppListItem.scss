@@ -1,0 +1,34 @@
+.item {
+  padding: 1rem;
+  border: 2px solid #CCC;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    border-radius: 6px;
+    background-color: #CCC;
+    width: 3rem;
+    height: 3rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  .created {
+    color: #444;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+}
