@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Redirect } from 'react-router-dom';
 import { Switch, Route } from 'react-router';
 
 import { signIn, validateToken } from 'src/api/auth';
 import Authenticate from 'src/components/Authenticate';
+import PrivateRoute from 'src/containers/PrivateRoute';
 
 import styles from './App.scss';
 
@@ -23,7 +24,7 @@ class App extends Component {
     if (auth.accessToken) {
       const isValid = await validateToken(auth.accessToken);
       if (!isValid) {
-        localStorage.setItem('accessToken', null);
+        localStorage.removeItem('accessToken');
         this.setState(state => ({
           auth: {
             ...state.auth,
@@ -45,7 +46,7 @@ class App extends Component {
     }));
 
     // Request sign in response from server
-    const response = await signIn({ ...args, expiry: '10s' });
+    const response = await signIn({ ...args });
 
     if (response.accessToken) {
       // Save access token to localStorage for persistant sessions
@@ -72,7 +73,7 @@ class App extends Component {
 
   signOut = (message) => {
     // Remove access taken from localStorage
-    localStorage.setItem('accessToken', null);
+    localStorage.removeItem('accessToken');
     // Remove access token from container state
     this.setState(state => ({
       auth: {
@@ -93,12 +94,27 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={() => (
-                <Authenticate auth={auth} signIn={this.signIn} />
+              render={routeProps => (
+                auth.accessToken ?
+                  <Redirect to="/apps" />
+                  :
+                  <Authenticate auth={auth} signIn={this.signIn} {...routeProps} />
               )}
             />
-            <Route exact path="/apps" render={() => (<div>Apps</div>)} />
-            <Route path="/apps/:id" render={props => (<div>App ID {props.match.params.id}</div>)} />
+            <PrivateRoute
+              exact
+              path="/apps"
+              render={() => (<div>Apps</div>)}
+              isAuthenticated={auth.accessToken}
+              loginPath="/"
+            />
+            <PrivateRoute
+              exact
+              path="/apps/:id"
+              render={props => (<div>App ID {props.match.params.id}</div>)}
+              isAuthenticated={auth.accessToken}
+              loginPath="/"
+            />
           </Switch>
         </HashRouter>
       </div>
