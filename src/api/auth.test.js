@@ -4,7 +4,7 @@ import { signIn, validateToken } from './auth';
 
 jest.mock('axios');
 
-describe('Authentication - sign in', () => {
+describe('Sign in', () => {
   test('Signing in with valid credentials returns access token', async () => {
     axios.post.mockResolvedValueOnce({ data: { accessToken: 'fakeToken' } });
     const response = await signIn();
@@ -32,7 +32,7 @@ describe('Authentication - sign in', () => {
   });
 });
 
-describe('Authentication - validate token', () => {
+describe('Validate token', () => {
   test('Valid token returns true', async () => {
     axios.get.mockResolvedValueOnce();
     const isValid = await validateToken();
