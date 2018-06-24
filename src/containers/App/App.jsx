@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router';
 import { signIn, validateToken } from 'src/api/auth';
 import Authenticate from 'src/components/Authenticate';
 import PrivateRoute from 'src/containers/PrivateRoute';
+import AppList from 'src/components/AppList';
 
 import styles from './App.scss';
 
@@ -104,7 +105,7 @@ class App extends Component {
             <PrivateRoute
               exact
               path="/apps"
-              render={() => (<div>Apps</div>)}
+              render={() => (<AppList />)}
               isAuthenticated={auth.accessToken}
               loginPath="/"
             />
