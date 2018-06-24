@@ -14,7 +14,7 @@ const AppListItem = ({ app = {} }) => (
         {app.name}
       </div>
       <div className={styles.created}>
-        {moment(app.created).fromNow()}
+        created {moment(app.created).fromNow()}
       </div>
     </div>
   </Link>

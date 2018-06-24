@@ -34,7 +34,7 @@ class AppList extends Component {
             {apps.message}
           </div>
         }
-        {apps.loading ?
+        {apps.loading && apps.list.length === 0 ?
           <div className="center">Loading apps...</div>
           :
           this.renderAppListItems()

@@ -29,7 +29,7 @@ class Authenticate extends Component {
 
     return (
       <div className={styles.container}>
-        <h2>Sign In</h2>
+        <h1>Sign In</h1>
         {auth.message &&
           <div className={`${styles.message} mb1`}>
             {auth.message}
