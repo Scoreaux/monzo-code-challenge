@@ -24,8 +24,9 @@ class App extends Component {
       message: null,
     },
     users: {
-      list: [],
       id: null,
+      page: 0,
+      list: [],
       loading: false,
       message: null,
     },
@@ -148,8 +149,9 @@ class App extends Component {
     this.setState(state => ({
       ...state,
       users: {
-        list: [],
+        ...state.users,
         id,
+        page,
         loading: true,
       }
     }));
@@ -163,6 +165,7 @@ class App extends Component {
       this.setState({
         users: {
           id,
+          page,
           list: response.users,
           loading: false,
         },
@@ -172,6 +175,7 @@ class App extends Component {
       this.setState({
         users: {
           id,
+          page,
           list: [],
           loading: false,
         },
@@ -183,6 +187,7 @@ class App extends Component {
       this.setState({
         users: {
           id,
+          page,
           list: [],
           loading: false,
           message: response.error,

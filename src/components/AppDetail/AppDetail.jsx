@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import UserListItem from 'src/components/UserListItem';
+
 class AppDetail extends Component {
   static defaultProps = {
     getApps: () => {},
@@ -40,10 +42,43 @@ class AppDetail extends Component {
   renderUserListItems = () => {
     const { users } = this.props;
     const { id } = this.state;
-    if (users.id === id);
-    return users.list.map(item => (
-      <div>{JSON.stringify(item)}</div>
-    ));
+    if (users.id === id) {
+      if (users.loading && users.list.length === 0) {
+        return (
+          <div className="center">Loading users list...</div>
+        );
+      }
+      return users.list.map(user => (
+        <UserListItem user={user} key={user.id} />
+      ));
+    }
+    return null;
+  }
+
+  renderUserListPageButtons = () => {
+    const { users } = this.props;
+    const { id } = this.state;
+    const canIncrease = users.list.length >= 25;
+    const canDecrease = users.page > 0;
+
+    return (
+      <div className="center">
+        <button
+          className="button"
+          onClick={() => { this.props.getUsers(id, users.page - 1); }}
+          disabled={!canDecrease}
+        >
+          Previous
+        </button>
+        <button
+          className="button"
+          onClick={() => { this.props.getUsers(id, users.page + 1); }}
+          disabled={!canIncrease}
+        >
+          Next
+        </button>
+      </div>
+    );
   }
 
   render() {
@@ -56,6 +91,7 @@ class AppDetail extends Component {
           <h2>{app.name}</h2>
           <p>{app.created}</p>
           {this.renderUserListItems()}
+          {this.renderUserListPageButtons()}
         </div>
       );
     } else if (apps.loading) {
